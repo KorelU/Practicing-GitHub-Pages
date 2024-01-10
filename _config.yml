@@ -1,1 +1,7 @@
-theme: jekyll-theme-Modernist
+#theme: jekyll-theme-Modernist
+title: YOUR TITLE
+description: YOUR DESCRIPTION
+theme: just-the-docs
+
+plugins:
+  - jekyll-default-layout

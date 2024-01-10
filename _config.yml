@@ -1,7 +1,8 @@
+plugins:
+  - jekyll-default-layout
+
 #theme: jekyll-theme-Modernist
 title: YOUR TITLE
 description: YOUR DESCRIPTION
 theme: just-the-docs
-
-plugins:
-  - jekyll-default-layout
+url: https:///KorelU.githb.io/Practacing-GitHub-Pages

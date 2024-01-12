@@ -8,10 +8,6 @@ to complete this.**
 *Note the installation on a remote server, virtual machine, and your
 local machine will be similar.*
 
-## Using a remote server to run the DENT NOS in GNS3
-
-(TODO)
-
 ## Using a virtual machine to run the DENT NOS in GNS3
 
 

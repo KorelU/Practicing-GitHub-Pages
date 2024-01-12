@@ -15,7 +15,7 @@ simulation of disaggregated networks. Uncover the power of DENT NOS
 in a virtualized environment with a quick installation walkthrough.
 Let’s dive in!**
 
-![ImageOneOfLocalUsage](Images/ImageOneOfLocalUsage.png)
+![ImageOneOfLocalUsage](../Images/ImageOneOfLocalUsage.png)
 
 ### Prerequisites
 - [GNS3](https://docs.gns3.com/docs/) installed on your system.
@@ -32,27 +32,27 @@ Uncompress the downloaded disk image file.
 
 ### 3. Import Appliance to GNS3
 
-![ImageTwoOfLocalUsage](Images/ImageTwoOfLocalUsage.png)
+![ImageTwoOfLocalUsage](../Images/ImageTwoOfLocalUsage.png)
 
 1. Open GNS3 and go to `File -> Import Appliance. `
 2. Select the GNS3 appliance file _(gns3a file)_ you downloaded
    from the OneDrive link.
 3. Choose the server on which to run the appliance.
 
-![ImageThreeOfLocalUsage](Images/ImageThreeOfLocalUsage.png)
+![ImageThreeOfLocalUsage](../Images/ImageThreeOfLocalUsage.png)
 
 ### 4. Choose QEMU Binary
 1. Choose the QEMU binary that will be used to run the DENT NOS
    appliance.
 2. The recommended option is `/bin/qemu-system-x86_64 (v8.0.4).`
 
-![ImageFourOfLocalUsage](Images/ImageFourOfLocalUsage.png)
+![ImageFourOfLocalUsage](../Images/ImageFourOfLocalUsage.png)
 
 ### 5. Import DENT NOS Image
 1. Click on the DENT NOS image file and import it.
 2. Wait for the upload to finish; this may take some time.
 
-![ImageFiveOfLocaLUsage](Images/ImageFiveOfLocalUsage.png)
+![ImageFiveOfLocaLUsage](../Images/ImageFiveOfLocalUsage.png)
 
 ### 6. Confirm Installation
 1. You will be prompted with an installation confirmation.
@@ -60,7 +60,7 @@ Uncompress the downloaded disk image file.
 
 
 <p align="center" width="100%">
-    <img width="50%" src=Images/ImageSixOfLocalUsage.png>
+    <img width="50%" src=../Images/ImageSixOfLocalUsage.png>
 </p>
 
 ### 7. DENT NOS Installation Complete
@@ -72,13 +72,13 @@ You have successfully installed DENT NOS on GNS3.
 2. Create your network topology, adding DENT NOS appliances as needed.
 3. Right-click on each appliance and select “Start” to initiate the simulation.
 
-![ImageSevenOfLocaLUsage](Images/ImageSevenOfLocalUsage.png)
+![ImageSevenOfLocaLUsage](../Images/ImageSevenOfLocalUsage.png)
 
 ### 9. Default Credentials
 - DENT login: root
 - Password: onl
 
-![ImageEightOfLocaLUsage](Images/ImageEightOfLocalUsage.png)
+![ImageEightOfLocaLUsage](../Images/ImageEightOfLocalUsage.png)
 
 ### Conclusion
 Congratulations! You’ve seamlessly integrated DENT NOS with GNS3, unlocking the potential for streamlined simulations of disaggregated networks.

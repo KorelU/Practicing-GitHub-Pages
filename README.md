@@ -1,5 +1,3 @@
-
-
 # DENT NOS
 Dent is an open source network operating system (NOS)
 designed for the world of decentralized enterprises.

@@ -1,7 +1,7 @@
 ---
 title: Using your local machine to run the DENT NOS in GNS3
 parent: Install the DENT NOS on GNS3
-nav_order: 1
+nav_order: 3
 ---
 
 ## Using your local machine to run the DENT NOS in GNS3

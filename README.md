@@ -1,5 +1,5 @@
 ---
-title: BISDN Linux
+#title: BISDN Linux
 nav_order: 1
 ---
 # DENT NOS

@@ -1,5 +1,7 @@
-title:DENT NOS
+---
+title: DENT NOS
 nav_order: 1
+---
 
 # DENT NOS
 Dent is an open source network operating system (NOS)

@@ -8,7 +8,9 @@ nav_order: 3
 To familiarize yourself with the DENT NOS we designed a 
 simple tutorial for you. This tutorial will quickly cover interfaces
 and how to configure a simple network.
+
 ***
+
 ## **Interfaces**
 A network interface is the point of connection between a computer
 and a network. As a system administrator you may want to know the 
@@ -74,7 +76,9 @@ to communicte with itself.
 The two IP addresses associated with ``127.0.0.1/8`` for IPv4 and ``::1/128`` for IPV6
 
 When configuring with the loopback interface a "via" route must be present
+
 ***
+
 ## Network Configuraiton
 
 While configuring your network you may need information on device ip addressing
@@ -169,7 +173,12 @@ To enable an interface, use ``ip link set dev ${interface name} up``.
 In the diagram above PC1 is connected to the interface ``enp0s11`` of the switch.
 PC2 is connected to the interface ``enp0s4`` of the switch.
 
-Once the interfaces are ``up`` you should see something similair as the following
+Run the following commands to bring these interfaces up
+
+``$ ip link set dev enp0s11 up``
+``$ ip link set dev enp0s4 up``
+
+Once the interfaces are ``up`` you should see something similar to the following:
 
 ```
 $ ip link show
@@ -209,7 +218,7 @@ You should now be able to ping your PCs to your switch and your switch to your P
 
 **NOTE: Forward packeting must be enabled to ping between the PCs over the switch.**
 
-If forward packeting is enabled on your router you should also be able to ping between your PCs over the switch.
+If forward packeting is enabled on your router you should now also be able to ping between the PCs.
 
 
 ### How to enable Forward Packeting

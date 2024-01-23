@@ -2,7 +2,7 @@ plugins:
   - jekyll-default-layout
 
 #theme: jekyll-theme-Modernist
-title: YOUR TITLE
+title: DENT NOS DOCUMENTATION
 description: YOUR DESCRIPTION
 remote_theme: just-the-docs/just-the-docs@v0.5.2
 url: https:///KorelU.githb.io/Practacing-GitHub-Pages

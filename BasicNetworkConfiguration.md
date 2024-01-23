@@ -29,39 +29,52 @@ $ ip link show
 ...
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-2: ma1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
-    link/ether 0c:98:a0:b7:00:00 brd ff:ff:ff:ff:ff:ff
+2: ma1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT group default qlen 1000
+    link/ether 0c:3f:f7:5c:00:00 brd ff:ff:ff:ff:ff:ff
 3: enp0s4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether 0c:98:a0:b7:00:01 brd ff:ff:ff:ff:ff:ff
-
+    link/ether 0c:3f:f7:5c:00:01 brd ff:ff:ff:ff:ff:ff
+4: enp0s5: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 0c:3f:f7:5c:00:02 brd ff:ff:ff:ff:ff:ff
   ...
 ```
 
 Interfaces can be managed using iproute2 or any netlink supported utility. 
 
-*Note all of the interfaces listed above are ``down``
-to utilize a link it must be ``up``.* You may bring a link ``up`` 
-using the following command ``sudo ip link set ${interface name} up``
+*Note all the interfaces listed above are ``down``. To utilize a link it must be ``up``.*
+
+You may bring a link ``up``using the following command
+``sudo ip link set ${interface name} up``
+
+*Note the output of ``ip link show`` will differ depending on whether
+the port is in use.*
 
 Ex.
 ```
-$ sudo ip link set enp0s4 up
-[  604.424999] 8021q: adding VLAN 0 to HW filter on device enp0s4
+$ ip link set dev enp0s4 up
+[  443.984073] e1000: enp0s4 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[  443.991676] 8021q: adding VLAN 0 to HW filter on device enp0s4
+[  444.001685] IPv6: ADDRCONF(NETDEV_CHANGE): enp0s4: link becomes ready
+$ ip link set dev enp0s5 up
+[  451.350751] 8021q: adding VLAN 0 to HW filter on device enp0s5
+
 ```
 
+In the output above notice that the interface enp0s4 was inuse while enp0s5 was not.
 
-Rerunning ``ip link show`` will now depict ``enp0s4`` as ``up``:
+Rerunning ``ip link show`` will now depict ``enp0s4`` as ``up`` 
+while ``enp0s5`` will remain unused:
 
 ```
 $ ip link show
 ...
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-2: ma1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
-    link/ether 0c:98:a0:b7:00:00 brd ff:ff:ff:ff:ff:ff
-3: enp0s4: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT group default qlen 1000
-    link/ether 0c:98:a0:b7:00:01 brd ff:ff:ff:ff:ff:ff
-    
+2: ma1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT group default qlen 1000
+    link/ether 0c:3f:f7:5c:00:00 brd ff:ff:ff:ff:ff:ff
+3: enp0s4: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+    link/ether 0c:3f:f7:5c:00:01 brd ff:ff:ff:ff:ff:ff
+4: enp0s5: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT group default qlen 1000
+    link/ether 0c:3f:f7:5c:00:02 brd ff:ff:ff:ff:ff:ff
 ...
 ```
 
@@ -71,7 +84,6 @@ To disable a link and bringing it back ``down`` use the following command
 Ex.
 ```
 $ sudo ip link set enp0s4 down
-[  604.424999] 8021q: adding VLAN 0 to HW filter on device enp0s4
 ```
 
 ### Loopback Interface
@@ -82,9 +94,6 @@ to communicte with itself.
 
 The two IP addresses associated with the loopback interface
 are ``127.0.0.1/8`` for IPv4 and ``::1/128`` for IPV6.
-
-When configuring with the loopback interface a "via" route must be present  
-
 
 ***
 
@@ -102,13 +111,10 @@ $ ip address show
        valid_lft forever preferred_lft forever
     inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
-2: ma1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 0c:98:a0:b7:00:00 brd ff:ff:ff:ff:ff:ff
-    inet6 fe80::e98:a0ff:feb7:0/64 scope link
-       valid_lft forever preferred_lft forever
-3: enp0s4: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast state DOWN group default qlen 1000
-    link/ether 0c:98:a0:b7:00:01 brd ff:ff:ff:ff:ff:ff
-
+2: ma1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN group default qlen 1000
+    link/ether 0c:3f:f7:5c:00:00 brd ff:ff:ff:ff:ff:ff
+3: enp0s4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 0c:3f:f7:5c:00:01 brd ff:ff:ff:ff:ff:ff
 ...
 ```
 
@@ -132,12 +138,10 @@ $ ip address show
        valid_lft forever preferred_lft forever
     inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
-2: ma1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 0c:98:a0:b7:00:00 brd ff:ff:ff:ff:ff:ff
-    inet6 fe80::e98:a0ff:feb7:0/64 scope link
-       valid_lft forever preferred_lft forever
-3: enp0s4: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast state DOWN group default qlen 1000
-    link/ether 0c:98:a0:b7:00:01 brd ff:ff:ff:ff:ff:ff
+2: ma1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN group default qlen 1000
+    link/ether 0c:3f:f7:5c:00:00 brd ff:ff:ff:ff:ff:ff
+3: enp0s4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 0c:3f:f7:5c:00:01 brd ff:ff:ff:ff:ff:ff
     inet 192.0.2.1/24 scope global enp0s4
        valid_lft forever preferred_lft forever
 

@@ -9,6 +9,7 @@ To familiarize yourself with the DENT NOS we designed a
 simple tutorial for you. This tutorial will quickly cover interfaces
 and how to configure a simple network.
 
+
 ***
 
 ## **Interfaces**
@@ -38,15 +39,18 @@ $ ip link show
 
 Interfaces can be managed using iproute2 or any netlink supported utility. 
 
-*Note to utilize a link it must be ``up``.* You may bring a link ``up`` using the following command:
+*Note all of the interfaces listed above are ``down``
+to utilize a link it must be ``up``.* You may bring a link ``up`` 
+using the following command ``sudo ip link set ${interface name} up``
 
+Ex.
 ```
 $ sudo ip link set enp0s4 up
 [  604.424999] 8021q: adding VLAN 0 to HW filter on device enp0s4
 ```
 
 
-Rerunning ``ip link show`` will show ``enp0s4`` is now up:
+Rerunning ``ip link show`` will now depict ``enp0s4`` as ``up``:
 
 ```
 $ ip link show
@@ -61,7 +65,10 @@ $ ip link show
 ...
 ```
 
-You may also disable a link by bringing it ``down`` using the following command:
+To disable a link and bringing it back ``down`` use the following command
+``sudo ip link set ${interface name} down``
+
+Ex.
 ```
 $ sudo ip link set enp0s4 down
 [  604.424999] 8021q: adding VLAN 0 to HW filter on device enp0s4
@@ -73,15 +80,17 @@ The loopback interface `` lo `` is a special type of virtual interface that allo
 to communicte with itself.
 
 
-The two IP addresses associated with ``127.0.0.1/8`` for IPv4 and ``::1/128`` for IPV6
+The two IP addresses associated with the loopback interface
+are ``127.0.0.1/8`` for IPv4 and ``::1/128`` for IPV6.
 
-When configuring with the loopback interface a "via" route must be present
+When configuring with the loopback interface a "via" route must be present  
+
 
 ***
 
 ## Network Configuraiton
 
-While configuring your network you may need information on device ip addressing
+While configuring your network you may need information on device IP addressing
 to enable device communication. To show all addresses use the following command:
 
 ```
@@ -112,7 +121,7 @@ For example run the following command in your DENT NOS:
 
 ```ip address add 192.0.2.1/24 dev enp0s4```
 
-Rerunning ``ip address show`` will show that ``enp0s4`` now has an ip address linked to it:
+Rerunning ``ip address show`` will now show that ``enp0s4`` has an ip address linked to it:
 
 ```
 $ ip address show
@@ -200,23 +209,25 @@ Next add the gateway addresses to your switch on the appropriate interface.
 To add the gateway addresses use the following command
 ``ip address add ${address}/${mask} dev ${interface name}``.
 
-In the diagram above PC1 is connected to the interface ``enp0s11`` of the switch
-and will use the gateway address 10.1.1.254. On the switch run the following command
-to add the gateway addresses for PC1 to the switch:
+In the diagram above PC1 is connected to the port Ethernet7 which corresponds to 
+the interface ``enp0s11`` of the switch. PC1 will also use the gateway address 
+10.1.1.254. On the switch run the following command to add the gateway address
+for PC1 to the switch:
 
 ```ip address add 10.1.1.254 dev enp0s11```
 
 
-In the diagram above PC2 is connected to the interface ``enp0s4`` of the switch
-and will use the gateway address 10.1.2.254. On the switch run the following command
-to add the gateway addresses for PC2 to the switch:
+In the diagram above PC2 is connected to the port Ethernet0 which corresponds to
+the interface ``enp0s4`` of the switch. PC2 will also use the gateway address
+10.1.2.254. On the switch run the following command to add the gateway address
+for PC2 to the switch:
 
 ```ip address add 10.1.2.254 dev enp0s4```
 
 
 You should now be able to ping your PCs to your switch and your switch to your PCs.
 
-**NOTE: Forward packeting must be enabled to ping between the PCs over the switch.**
+*NOTE: Forward packeting must be enabled to ping between the PCs over the switch.*
 
 If forward packeting is enabled on your router you should now also be able to ping between the PCs.
 
@@ -231,7 +242,8 @@ following command:
 
 If the file content is "0", packet forwarding is disabled.
 To enable packet forwarding the content of the file must be "1".
-Use the following command to write overwrite the contents of te file to
+
+Use the following command to write overwrite the contents of the file to
 the value of '1':
 
 ``sudo sh -c 'echo 1 > /proc/sys/net/ipv4/ip_forward' ``

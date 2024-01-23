@@ -4,8 +4,11 @@ nav_order: 1
 ---
 
 # DENT NOS
-Dent is an open source network operating system (NOS)
-designed for the world of decentralized enterprises.
+DENT is an open source network operating system (NOS)
+designed for the world of decentralized enterprises. DENT uses
+the familiar linux commands for configuring networks to abstract
+the user experience. With DENT you can configure switches from 
+different vendors without having to learn the commands associated with each.
 
 
 With the first release Arthur. Dent uses the  Linux 5.6

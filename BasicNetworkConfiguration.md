@@ -5,7 +5,7 @@ nav_order: 3
 
 # Getting Started With Network Configuration
 
-To familiarize yourself with the DENT NOS we designed a 
+To familiarize yourself with the DENT NOS we designed a
 simple tutorial for you. This tutorial will quickly cover interfaces
 and how to configure a simple network.
 
@@ -14,14 +14,14 @@ and how to configure a simple network.
 
 ## **Interfaces**
 A network interface is the point of connection between a computer
-and a network. As a system administrator you may want to know the 
+and a network. As a system administrator you may want to know the
 available network interfaces in your system to manage network
 configurations.
 
 
 ### Links
-The term Link is another name for a network interface. Once you start your DENT NOS 
-and login, you may display the available links associated with your machine using 
+The term Link is another name for a network interface. Once you start your DENT NOS
+and login, you may display the available links associated with your machine using
 the following command:
 
 ```
@@ -38,7 +38,7 @@ $ ip link show
   ...
 ```
 
-Interfaces can be managed using iproute2 or any netlink supported utility. 
+Interfaces can be managed using iproute2 or any netlink supported utility.
 
 *Note all the interfaces listed above are ``down``. To utilize a link it must be ``up``.*
 
@@ -61,7 +61,7 @@ $ ip link set dev enp0s5 up
 
 In the output above notice that the interface ``enp0s4`` was inuse while ``enp0s5`` was not.
 
-Rerunning ``ip link show`` will now depict ``enp0s4`` as ``up`` 
+Rerunning ``ip link show`` will now depict ``enp0s4`` as ``up``
 while ``enp0s5`` will remain unused:
 
 ```
@@ -155,14 +155,14 @@ this example.
 
 ![ImageOneOfSimpleConfigurationExample](./Images/ImagesForBasicNetworkConfiguration/ImageOneOfSimpleConfiguraitonExample.png)
 
-Assume PC1 has an IP address of 10.1.1.1/24 and an associated gateway 
-10.1.1.254. PC2 will have an IP address of 10.1.2.1/24 and an associated gateway
-10.1.2.254. Both PCs are connected to a switch running the DENT NOS.
+Assume PC1 has an IP address of 192.168.1.1/24 and an associated gateway
+192.168.1.2/24. PC2 will have an IP address of 192.168.1.3/24 and an associated gateway
+192.168.1.4/24. Both PCs are connected to a switch running the DENT NOS.
 
 ### Enable Interfaces
-The ports which these devices are connected to the switch with will be 
+The ports which these devices are connected to the switch with will be
 represented by the interfaces on the switch. When logged into the switch
-use ``ip link show`` to view a list of all available interfaces. 
+use ``ip link show`` to view a list of all available interfaces.
 
 
 Ex.
@@ -178,7 +178,7 @@ $ ip link show
 ...
 ```
 
-*Note by default all interfaces will be down. You must enable all interfaces that are 
+*Note by default all interfaces will be down. You must enable all interfaces that are
 associated with a port that is in use.*
 
 To enable an interface, use ``ip link set dev ${interface name} up``.
@@ -213,20 +213,20 @@ Next add the gateway addresses to your switch on the appropriate interface.
 To add the gateway addresses use the following command
 ``ip address add ${address}/${mask} dev ${interface name}``.
 
-In the diagram above PC1 is connected to the port Ethernet7 which corresponds to 
-the interface ``enp0s11`` of the switch. PC1 will also use the gateway address 
-10.1.1.254. On the switch run the following command to add the gateway address
+In the diagram above PC1 is connected to the port Ethernet7 which corresponds to
+the interface ``enp0s11`` of the switch. PC1 will also use the gateway address
+192.168.1.2/24. On the switch run the following command to add the gateway address
 for PC1 to the switch:
 
-```ip address add 10.1.1.254 dev enp0s11```
+```ip address add 192.168.1.2/24 dev enp0s11```
 
 
 In the diagram above PC2 is connected to the port Ethernet0 which corresponds to
 the interface ``enp0s4`` of the switch. PC2 will also use the gateway address
-10.1.2.254. On the switch run the following command to add the gateway address
+192.168.1.4/24. On the switch run the following command to add the gateway address
 for PC2 to the switch:
 
-```ip address add 10.1.2.254 dev enp0s4```
+```ip address add 192.168.1.4/24 dev enp0s4```
 
 
 You should now be able to ping your PCs to your switch and your switch to your PCs.
@@ -242,7 +242,7 @@ To enable Packet forwarding check on the router to make sure the value
 of the file ``ip_forward`` is "1". To view the contents of the file execute the
 following command:
 
-``cat /proc/sys/net/ipv4/ip_forward`` 
+``cat /proc/sys/net/ipv4/ip_forward``
 
 If the file content is "0", packet forwarding is disabled.
 To enable packet forwarding the content of the file must be "1".
@@ -252,5 +252,5 @@ the value of '1':
 
 ``sudo sh -c 'echo 1 > /proc/sys/net/ipv4/ip_forward' ``
 
-Congratulations! 
+Congratulations!
 You should now be able to ping PC1 and PC2 through your router.

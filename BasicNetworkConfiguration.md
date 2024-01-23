@@ -7,12 +7,12 @@ nav_order: 3
 
 To familiarize yourself with the DENT NOS we designed a 
 simple tutorial for you. This tutorial will quickly cover interfaces
-and how to configure a simple network using iproute2.
-
+and how to configure a simple network.
+***
 ## **Interfaces**
 A network interface is the point of connection between a computer
 and a network. As a system administrator you may want to know the 
-available network interfaces in your Linux system to manage network
+available network interfaces in your system to manage network
 configurations.
 
 
@@ -34,8 +34,9 @@ $ ip link show
   ...
 ```
 
-Interfaces can be managed using iproute2 or any netlink supported utility. Note to utilize a
-link it must be ``up``. You may bring a link ``up`` using the following command:
+Interfaces can be managed using iproute2 or any netlink supported utility. 
+
+*Note to utilize a link it must be ``up``.* You may bring a link ``up`` using the following command:
 
 ```
 $ sudo ip link set enp0s4 up
@@ -58,7 +59,7 @@ $ ip link show
 ...
 ```
 
-You may disable a link by bringing it ``down`` using the following command:
+You may also disable a link by bringing it ``down`` using the following command:
 ```
 $ sudo ip link set enp0s4 down
 [  604.424999] 8021q: adding VLAN 0 to HW filter on device enp0s4
@@ -73,7 +74,7 @@ to communicte with itself.
 The two IP addresses associated with ``127.0.0.1/8`` for IPv4 and ``::1/128`` for IPV6
 
 When configuring with the loopback interface a "via" route must be present
-
+***
 ## Network Configuraiton
 
 While configuring your network you may need information on device ip addressing
@@ -98,7 +99,7 @@ $ ip address show
 ...
 ```
 
-To connect machines add an ip address on an interface eof your choice using the following
+To connect machines add an IP address on an interface of your choice using the following
 command:
 
 ``` sudo ip address add ${address}/${mask} dev ${interface name}```
@@ -129,7 +130,7 @@ $ ip address show
 
 ...
 ```
-
+***
 ## Simple Configuration Example
 
 Imagine the configuration below. We will be using GNS3 to help illustrate

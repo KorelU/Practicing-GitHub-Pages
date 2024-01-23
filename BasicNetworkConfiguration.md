@@ -59,7 +59,7 @@ $ ip link set dev enp0s5 up
 
 ```
 
-In the output above notice that the interface enp0s4 was inuse while enp0s5 was not.
+In the output above notice that the interface ``enp0s4`` was inuse while ``enp0s5`` was not.
 
 Rerunning ``ip link show`` will now depict ``enp0s4`` as ``up`` 
 while ``enp0s5`` will remain unused:
@@ -153,7 +153,7 @@ $ ip address show
 Imagine the configuration below. We will be using GNS3 to help illustrate
 this example.
 
-![ImageOneOfSimpleConfigurationExample](./ImagesForBasicNetworkConfiguration/ImageOneOfSimpleConfiguraitonExample.png)
+![ImageOneOfSimpleConfigurationExample](./Images/ImagesForBasicNetworkConfiguration/ImageOneOfSimpleConfiguraitonExample.png)
 
 Assume PC1 has an IP address of 10.1.1.1/24 and an associated gateway 
 10.1.1.254. PC2 will have an IP address of 10.1.2.1/24 and an associated gateway

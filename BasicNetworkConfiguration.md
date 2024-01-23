@@ -183,8 +183,8 @@ associated with a port that is in use.*
 
 To enable an interface, use ``ip link set dev ${interface name} up``.
 
-In the diagram above PC1 is connected to the interface ``enp0s11`` of the switch.
-PC2 is connected to the interface ``enp0s4`` of the switch.
+In the diagram above PC1 is connected to the port Ethernet7 which corresponds to the interface ``enp0s11`` of the switch.
+PC2 is connected to the port Ethernet0 which corresponds to the interface ``enp0s4`` of the switch.
 
 Run the following commands to bring these interfaces up
 

@@ -59,7 +59,7 @@ $ ip link set dev enp0s5 up
 
 ```
 
-In the output above notice that the interface ``enp0s4`` was inuse while ``enp0s5`` was not.
+In the output above notice that the interface ``enp0s4`` was in use while ``enp0s5`` was not.
 
 Rerunning ``ip link show`` will now depict ``enp0s4`` as ``up``
 while ``enp0s5`` will remain unused:
@@ -99,8 +99,9 @@ are ``127.0.0.1/8`` for IPv4 and ``::1/128`` for IPV6.
 
 ## Network Configuraiton
 
-While configuring your network you may need information on device IP addressing
-to enable device communication. To show all addresses use the following command:
+While configuring your network you may need information on interface IP
+addressing to enable device communication. To show all addresses use
+the following command:
 
 ```
 $ ip address show
@@ -147,6 +148,7 @@ $ ip address show
 
 ...
 ```
+
 ***
 ## Simple Configuration Example
 
@@ -253,4 +255,6 @@ the value of '1':
 ``sudo sh -c 'echo 1 > /proc/sys/net/ipv4/ip_forward' ``
 
 Congratulations!
-You should now be able to ping PC1 and PC2 through your router.
+You should now be able to ping PC1 and PC2 through your device.
+
+To configure more complex scenarios, please refer to the [Network Configuration](../NetworkConfiguration.md) section.

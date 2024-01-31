@@ -59,7 +59,7 @@ $ ip link set dev enp0s5 up
 
 ```
 
-In the output above notice that the interface ``enp0s4`` was inuse while ``enp0s5`` was not.
+In the output above notice that the interface ``enp0s4`` was in use while ``enp0s5`` was not.
 
 Rerunning ``ip link show`` will now depict ``enp0s4`` as ``up``
 while ``enp0s5`` will remain unused:
@@ -99,8 +99,9 @@ are ``127.0.0.1/8`` for IPv4 and ``::1/128`` for IPV6.
 
 ## Network Configuraiton
 
-While configuring your network you may need information on device IP addressing
-to enable device communication. To show all addresses use the following command:
+While configuring your network you may need information on interface IP
+addressing to enable device communication. To show all addresses use
+the following command:
 
 ```
 $ ip address show
@@ -147,17 +148,35 @@ $ ip address show
 
 ...
 ```
+
+When two devices are on the same subnet you may need to use a bridge to
+allow these devices to communicate. Bridging refers to the process of 
+combining multiple network interfaces into a single logical interface.
+This new interface is called a bridge.
+
+To create a bridge interface use the following command:
+
+``ip link add name <Insert Name> type bridge``
+
+After creating a bridge add an IP address to the network interface 
+with the command:
+
+``ip addr add <Insert IP address> dev <Insert Previously Chosen Name>``
+
+
+
+
 ***
 ## Simple Configuration Example
 
 Imagine the configuration below. We will be using GNS3 to help illustrate
 this example.
 
-![ImageOneOfSimpleConfigurationExample](./Images/ImagesForBasicNetworkConfiguration/ImageOneOfSimpleConfiguraitonExample.png)
+![ImageOneOfSimpleConfigurationExample](./Images/ImagesForBasicNetworkConfiguration/DifferentSubNets.png)
 
-Assume PC1 has an IP address of 192.168.1.1/24 and an associated gateway
-192.168.1.2/24. PC2 will have an IP address of 192.168.1.3/24 and an associated gateway
-192.168.1.4/24. Both PCs are connected to a switch running the DENT NOS.
+Assume PC1 has an IP address of 10.1.1.1/24 and an associated gateway
+10.1.1.254/24 PC2 will have an IP address of 10.1.2.1/24 and an associated gateway
+10.1.2.254/24 Both PCs are connected to a switch running the DENT NOS.
 
 ### Enable Interfaces
 The ports which these devices are connected to the switch with will be
@@ -215,18 +234,18 @@ To add the gateway addresses use the following command
 
 In the diagram above PC1 is connected to the port Ethernet7 which corresponds to
 the interface ``enp0s11`` of the switch. PC1 will also use the gateway address
-192.168.1.2/24. On the switch run the following command to add the gateway address
+10.1.1.254/24. On the switch run the following command to add the gateway address
 for PC1 to the switch:
 
-```ip address add 192.168.1.2/24 dev enp0s11```
+```ip address add 10.1.1.254/24 dev enp0s11```
 
 
 In the diagram above PC2 is connected to the port Ethernet0 which corresponds to
 the interface ``enp0s4`` of the switch. PC2 will also use the gateway address
-192.168.1.4/24. On the switch run the following command to add the gateway address
+10.1.2.254/24. On the switch run the following command to add the gateway address
 for PC2 to the switch:
 
-```ip address add 192.168.1.4/24 dev enp0s4```
+```ip address add 10.1.2.254/24 dev enp0s4```
 
 
 You should now be able to ping your PCs to your switch and your switch to your PCs.
@@ -253,4 +272,6 @@ the value of '1':
 ``sudo sh -c 'echo 1 > /proc/sys/net/ipv4/ip_forward' ``
 
 Congratulations!
-You should now be able to ping PC1 and PC2 through your router.
+You should now be able to ping PC1 and PC2 through your device.
+
+To configure more complex scenarios, please refer to the [Network Configuration](../NetworkConfiguration.md) section.
